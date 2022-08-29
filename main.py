@@ -1,13 +1,15 @@
-# import the librarieswe need
+# (second trial)Step 1: Get the data
+
 import yfinance as yf
 import numpy as np
 
-# get data and compute the simple returns
+# Then I get data and compute the simple returns.
+
 data = yf.download("SPY", start="2020-01-01", end="2022-07-31")
 returns = data["Adj Close"].pct_change()
 
 
-# now we create the drawdown function
+# Step 2: Create the drawdown function
 
 def drawdown(returns):
     """Determines the drawdown
@@ -65,5 +67,4 @@ def max_drawdown(returns):
 
 
 # Here’s the plot.
-
 returns.rolling(30).apply(max_drawdown).plot(kind="area", color="salmon", alpha=0.5)
